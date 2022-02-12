@@ -5,6 +5,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        head -1 ../CHANGELOG.md | awk '{print $2}'
+
   - task: DotNetCoreCLI@2
     inputs:
       command: 'restore'
