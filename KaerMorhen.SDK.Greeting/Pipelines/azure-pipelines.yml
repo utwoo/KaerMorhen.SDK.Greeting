@@ -5,6 +5,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps: 
+  - bash: |
+      echo "##vso[task.setvariable variable=sauce]0.0.2"
+  
+  - bash: |
+      echo "my environment variable is $SAUCE"
+      
   - task: DotNetCoreCLI@2
     inputs:
       command: 'restore'
@@ -24,7 +30,9 @@ steps:
     inputs:
       command: 'pack'
       packagesToPack: '**/*.csproj'
-      versioningScheme: 'off'
+      nobuild: true
+      versioningScheme: 'byEnvVar'
+      versionEnvVar: 'SAUCE'
   
   - task: NuGetCommand@2
     displayName: 'NuGet push'
