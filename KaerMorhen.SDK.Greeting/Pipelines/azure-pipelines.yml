@@ -10,7 +10,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        head -1 ../CHANGELOG.md | awk '{print $2}'
+        head -1 ./CHANGELOG.md | awk '{print $2}'
 
   - task: DotNetCoreCLI@2
     inputs:
