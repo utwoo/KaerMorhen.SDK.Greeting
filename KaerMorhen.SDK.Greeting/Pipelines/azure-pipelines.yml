@@ -10,13 +10,13 @@ steps:
       command: 'restore'
       projects: '**/*.csproj'
       feedsToUse: 'select'
-      vstsFeed: ${Nuget-Feed}
+      vstsFeed: $(Nuget-Feed)
     
   - task: DotNetCoreCLI@2
     inputs:
       command: 'build'
       projects: '**/*.csproj'
-      
+
   - task: NuGetAuthenticate@0
     displayName: 'NuGet Authenticate'
     
@@ -32,5 +32,5 @@ steps:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
       nuGetFeedType: 'internal'
-      publishVstsFeed: '${Nuget-Feed}'
+      publishVstsFeed: '$(Nuget-Feed)'
       allowPackageConflicts: true
