@@ -5,19 +5,21 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-
-  - task: UseDotNet@2
-    inputs:
-      version: '5.0.x'
-      packageType: runtime
-
   - task: DotNetCoreCLI@2
     inputs:
       command: 'restore'
       projects: '**/*.csproj'
       feedsToUse: 'select'
-      vstsFeed: '2e1e0143-9bde-4c50-a108-63ce9b32df8e/419c9eff-9950-4df2-b87b-babb3c6722d1'
-
+      vstsFeed: ${Nuget-Feed}
+    
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+      
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+    
   - task: NuGetCommand@2
     inputs:
       command: 'pack'
@@ -30,5 +32,5 @@ steps:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
       nuGetFeedType: 'internal'
-      publishVstsFeed: '2e1e0143-9bde-4c50-a108-63ce9b32df8e/419c9eff-9950-4df2-b87b-babb3c6722d1'
+      publishVstsFeed: '${Nuget-Feed}'
       allowPackageConflicts: true
