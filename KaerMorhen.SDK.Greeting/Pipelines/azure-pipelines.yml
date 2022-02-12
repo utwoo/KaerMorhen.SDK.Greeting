@@ -11,15 +11,27 @@ steps:
       version: '5.0.x'
       packageType: 'sdk'
 
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'restore'
+      projects: '**/*.csproj'
+      feedsToUse: 'select'
+      vstsFeed: '2e1e0143-9bde-4c50-a108-63ce9b32df8e/419c9eff-9950-4df2-b87b-babb3c6722d1'
+
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+    
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+    
   - task: NuGetCommand@2
     inputs:
       command: 'pack'
       packagesToPack: '**/*.csproj'
       versioningScheme: 'byBuildNumber'
 
-  - task: NuGetAuthenticate@0
-    displayName: 'NuGet Authenticate'
-    
   - task: NuGetCommand@2
     displayName: 'NuGet push'
     inputs:
