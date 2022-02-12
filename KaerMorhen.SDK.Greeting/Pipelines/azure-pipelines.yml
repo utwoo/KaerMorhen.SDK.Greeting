@@ -5,14 +5,17 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - script: echo Run Develop Pipeline. Project Name $(ProjectName)
-    displayName: 'Echo Project Name'
+  - task: UseDotNet@2
+    displayName: 'Use .NET SDK 5'
+    inputs:
+      version: '5.0.x'
+      packageType: 'sdk'
 
   - task: NuGetCommand@2
     inputs:
-      command: pack
+      command: 'pack'
       packagesToPack: '**/*.csproj'
-      packDestination: '$(Build.ArtifactStagingDirectory)'
+      versioningScheme: 'byBuildNumber'
 
   - task: NuGetAuthenticate@0
     displayName: 'NuGet Authenticate'
