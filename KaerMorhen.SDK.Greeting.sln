@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaerMorhen.SDK.Greeting", "KaerMorhen.SDK.Greeting\KaerMorhen.SDK.Greeting.csproj", "{EF711CDB-57FA-4CC0-AFA5-190D79927494}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaerMorhen.SDK.Greeting.Test", "KaerMorhen.SDK.Greeting.Test\KaerMorhen.SDK.Greeting.Test.csproj", "{B8BA7B47-7618-4662-9630-B76E248B9B41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{EF711CDB-57FA-4CC0-AFA5-190D79927494}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF711CDB-57FA-4CC0-AFA5-190D79927494}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF711CDB-57FA-4CC0-AFA5-190D79927494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8BA7B47-7618-4662-9630-B76E248B9B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8BA7B47-7618-4662-9630-B76E248B9B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8BA7B47-7618-4662-9630-B76E248B9B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8BA7B47-7618-4662-9630-B76E248B9B41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
