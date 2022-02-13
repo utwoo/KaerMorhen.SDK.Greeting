@@ -4,13 +4,15 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps: 
+variables:
+  'BUILD_NUMBER': '0.0.5'
 
+steps: 
   - task: Bash@3
     inputs:
       targetType: 'inline'
       script: |
-        echo '##vso[task.setvariable variable=sauce]0.0.4'
+        echo '##vso[task.setvariable variable=BUILD_NUMBER]0.0.6'
       
   - task: DotNetCoreCLI@2
     inputs:
@@ -33,7 +35,7 @@ steps:
       packagesToPack: 'KaerMorhen.SDK.Greeting/KaerMorhen.SDK.Greeting.csproj'
       nobuild: true
       versioningScheme: 'byEnvVar'
-      versionEnvVar: 'SAUCE'
+      versionEnvVar: 'BUILD_NUMBER'
   
   - task: NuGetCommand@2
     displayName: 'NuGet push'
