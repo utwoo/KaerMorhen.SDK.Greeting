@@ -10,19 +10,19 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        echo '##vso[task.setvariable variable=sauce]0.0.3'
+        echo '##vso[task.setvariable variable=sauce]0.0.4'
       
   - task: DotNetCoreCLI@2
     inputs:
       command: 'restore'
-      projects: '**/*.csproj'
+      projects: 'KaerMorhen.SDK.Greeting/KaerMorhen.SDK.Greeting.csproj'
       feedsToUse: 'select'
       vstsFeed: $(Nuget-Feed)
     
   - task: DotNetCoreCLI@2
     inputs:
       command: 'build'
-      projects: '**/*.csproj'
+      projects: 'KaerMorhen.SDK.Greeting/KaerMorhen.SDK.Greeting.csproj'
 
   - task: NuGetAuthenticate@0
     displayName: 'NuGet Authenticate'
@@ -30,7 +30,7 @@ steps:
   - task: DotNetCoreCLI@2
     inputs:
       command: 'pack'
-      packagesToPack: '**/*.csproj'
+      packagesToPack: 'KaerMorhen.SDK.Greeting/KaerMorhen.SDK.Greeting.csproj'
       nobuild: true
       versioningScheme: 'byEnvVar'
       versionEnvVar: 'SAUCE'
