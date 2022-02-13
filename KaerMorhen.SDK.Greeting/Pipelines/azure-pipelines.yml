@@ -12,7 +12,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        $BUILD_NUMBER='0.0.7'
+        BUILD_NUMBER='0.0.7'
       
   - task: DotNetCoreCLI@2
     inputs:
