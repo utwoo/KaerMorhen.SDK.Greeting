@@ -9,6 +9,7 @@ variables:
 
 steps: 
   - task: Bash@3
+    displayName: 'Get Build Number'
     inputs:
       targetType: 'inline'
       script: |
@@ -16,6 +17,7 @@ steps:
         echo "##vso[task.setvariable variable=BUILD_NUMBER;]$current_build"
       
   - task: DotNetCoreCLI@2
+    displayName: 'DotNet Restore'
     inputs:
       command: 'restore'
       projects: 'KaerMorhen.SDK.Greeting/KaerMorhen.SDK.Greeting.csproj'
@@ -23,6 +25,7 @@ steps:
       vstsFeed: $(Nuget-Feed)
     
   - task: DotNetCoreCLI@2
+    displayName: 'DotNet Build'
     inputs:
       command: 'build'
       projects: 'KaerMorhen.SDK.Greeting/KaerMorhen.SDK.Greeting.csproj'
@@ -31,6 +34,7 @@ steps:
     displayName: 'NuGet Authenticate'
     
   - task: DotNetCoreCLI@2
+    displayName: 'Nuget Pack'
     inputs:
       command: 'pack'
       packagesToPack: 'KaerMorhen.SDK.Greeting/KaerMorhen.SDK.Greeting.csproj'
@@ -39,7 +43,7 @@ steps:
       versionEnvVar: 'BUILD_NUMBER'
   
   - task: NuGetCommand@2
-    displayName: 'NuGet push'
+    displayName: 'NuGet Push'
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
