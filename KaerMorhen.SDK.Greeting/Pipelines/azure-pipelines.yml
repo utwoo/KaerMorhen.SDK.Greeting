@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  'BUILD_NUMBER': ''
+  'BUILD_NUMBER': '0.08'
 
 steps: 
   - task: Bash@3
